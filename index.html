@@ -5,68 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkSphere - Virtual Workspace</title>
+    <link rel="stylesheet" href="styles/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
     <div class="flex min-h-screen">
-        <div class="grid bg-green-600 w-auto p-3">
-            <aside class="flex flex-col gap-3">
-               <div class="flex bg-red-50 p-3 gap-3 border-2 rounded w-[300px] h-[100px] items-center">
-                    <img class="border-2 rounded-full w-[80px] h-[80px]" src="images/image.png" alt="image">
+        <div class="grid w-auto p-3">
+            <aside class="flex flex-col gap-3 border border-gray-300 rounded-xl p-4 items-center shadow-sm hover:border-gray-500 hover:shadow-md ">
+               <div class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                    <img class="border-2 rounded-full w-[50px] h-[50px]" src="images/imagePersonnale.jpg" alt="image">
                     <p>zakariae lahmar</p>   
                 </div>
-                <div class="flex bg-red-50 p-3 gap-3 border-2 rounded w-[300px] h-[100px] items-center">
-                    <img class="border-2 rounded-full w-[80px] h-[80px]" src="images/image.png" alt="image">
+                <div class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                    <img class="border-2 rounded-full w-[50px] h-[50px]" src="images/imagePersonnale.jpg" alt="image">
                     <p>zakariae lahmar</p>   
                 </div>
-                <div class="flex bg-red-50 p-3 gap-3 border-2 rounded w-[300px] h-[100px] items-center">
-                    <img class="border-2 rounded-full w-[80px] h-[80px]" src="images/image.png" alt="image">
+                <div class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                    <img class="border-2 rounded-full w-[50px] h-[50px]" src="images/imagePersonnale.jpg" alt="image">
                     <p>zakariae lahmar</p>   
                 </div>
-                <div class="flex bg-red-50 p-3 gap-3 border-2 rounded w-[300px] h-[100px] items-center">
-                    <img class="border-2 rounded-full w-[80px] h-[80px]" src="images/image.png" alt="image">
+                <div class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                    <img class="border-2 rounded-full w-[50px] h-[50px]" src="images/imagePersonnale.jpg" alt="image">
                     <p>zakariae lahmar</p>   
+                </div>
+                <div class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                    <img class="border-2 rounded-full w-[50px] h-[50px]" src="images/imagePersonnale.jpg" alt="image">
+                    <p>zakariae lahmar</p>   
+                </div>
+
+                <div class="flex mt-64">
+                    <button class=" bg-blue-600 border-2 rounded-xl w-64 h-16">Ajouter un nouvel employé</button>
                 </div>
             </aside>
         </div>
-        <div class="flex bg-red-600 w-full justify-center items-center">
-            <div class="flex p-3 border-2 bg-green-600 block w-auto h-auto">
+        <div class="flex bg-gray-50 w-full justify-center items-center">
+            <div  id="etage" class="flex p-3 border-black border-4 rounded-2xl bg-green-600 block w-auto h-auto">
                 <div>
-                    <div class="flex border-2 bg-yellow-600 block w-64 h-[265px] justify-center items-center">
-                        <h1>salle 1</h1>
+                    <div class="flex flex-col border-black border-8  block w-[350px] h-[350px] justify-center items-center">
+                        <h1>Salle de conférence</h1>
+                        <button class="text-blue-600 text-6xl">+</button>
                     </div>
-                    <div class="flex border-2 bg-blue-600 block w-64 h-[265px] justify-center items-center">
-                        <h1>salle 2</h1>
+                    <div class="flex flex-col border-black border-8 block w-[350px] h-[380px] justify-center items-center">
+                        <h1>Réception</h1>
+                        <button class="text-blue-600 text-6xl">+</button>
                     </div>
 
                     
                 </div>
-                <div class="flex block w-32 h-32 ">
+                <div class="flex block w-32 ">
 
                 </div>
 
                 <div>
-                    <div class="flex border-2 bg-gray-600 block w-[200px] h-[200px] justify-center items-center">
-                        <h1>salle 3</h1>
+                    <div class="flex flex-col border-black border-8 block w-[300px] h-[300px] justify-center items-center">
+                        <h1>Salle des serveurs</h1>
+                        <button class="text-blue-600 text-6xl">+</button>
                     </div>
-                    <div class="block w-32 h-32">
+                    <div class="block h-32">
 
                     </div>
-                    <div class="flex border-2 bg-pink-600 block w-[200px] h-[200px] justify-center items-center ">
-                        <h1>salle 4</h1>
+                    <div class="flex flex-col border-black border-8 block w-[300px] h-[300px] justify-center items-center ">
+                        <h1>Salle de sécurité</h1>
+                        <button class="text-blue-600 text-6xl">+</button>
                     </div>
                     
                 </div>
                 <div>
-                    <div class="flex border-2 bg-purple-600 block w-[200px] h-[200px] justify-center items-center">
-                        <h1>salle 5</h1>
+                    <div class="flex flex-col border-black border-8 block w-[300px] h-[300px] justify-center items-center">
+                        <h1>Salle du personnel</h1>
+                        <button class="text-blue-600 text-6xl">+</button>
                     </div>
-                    <div class="block w-32 h-32">
+                    <div class="block h-32">
 
                     </div>
-                    <div class="flex border-2 bg-blue-600 block w-[200px] h-[200px] justify-center items-center">
-                        <h1>salle 6</h1>
+                    <div class="flex flex-col border-black border-8 block w-[300px] h-[300px] justify-center items-center">
+                        <h1>Salle d’archives</h1>
+                        <button class="text-blue-600 text-6xl">+</button>
                     </div>
                 </div>
             </div>
