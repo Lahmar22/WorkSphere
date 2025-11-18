@@ -39,7 +39,8 @@
 
                 <div class="flex mt-64">
                     <button data-modal-target="ajouterEmploye" data-modal-toggle="ajouterEmploye"
-                        class=" bg-blue-600 border-2 rounded-xl w-64 h-16" type="button">Ajouter un nouvel employé</button>
+                        class=" bg-blue-600 border-2 rounded-xl w-64 h-16" type="button">Ajouter un nouvel
+                        employé</button>
                 </div>
             </aside>
         </div>
@@ -102,7 +103,7 @@
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-between items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-md max-h-full">
                 <div class="relative bg-white border border-default rounded-base shadow-sm p-4 md:p-6">
-                    
+
                     <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
                         <h3 class="text-lg font-medium text-heading">
                             Ajouter un nouvel employé
@@ -119,46 +120,91 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
+                    <div class="grid gap-4 grid-cols-2 py-4 md:py-6 h-[50vh] overflow-y-auto">
                         <div class="col-span-2">
                             <label for="nom" class="block mb-2.5 text-sm font-medium text-heading">Nom</label>
                             <input type="text" name="nom" id="nom"
                                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                                placeholder="Entrez le Nom complete" required="">
+                                placeholder="Entrez le Nom complete" required>
                         </div>
                         <div class="col-span-2 ">
                             <label for="role" class="block mb-2.5 text-sm font-medium text-heading">Rôle</label>
                             <input type="text" name="role" id="role"
                                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                                placeholder="Ex: Techniciens IT" required="">
+                                placeholder="Ex: Techniciens IT" required>
                         </div>
                         <div class="col-span-2">
                             <label for="photo" class="block mb-2.5 text-sm font-medium text-heading">Photo</label>
-                            
+
                             <input type="url" name="photo" id="photo"
                                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                                placeholder="entrez url de photo" required="">
+                                placeholder="entrez url de photo" required>
                         </div>
 
                         <div class="col-span-2 ">
                             <label for="email" class="block mb-2.5 text-sm font-medium text-heading">Email</label>
                             <input type="email" name="email" id="email"
                                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                                placeholder="Entrez l'email" required="">
+                                placeholder="Entrez l'email" required>
                         </div>
-                         <div class="col-span-2 ">
-                            <label for="telephone" class="block mb-2.5 text-sm font-medium text-heading">Téléphone</label>
+                        <div class="col-span-2 ">
+                            <label for="telephone"
+                                class="block mb-2.5 text-sm font-medium text-heading">Téléphone</label>
                             <input type="email" name="telephone" id="telephone"
                                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                                placeholder="Entrez le numero Téléphone" required="">
+                                placeholder="Entrez le numero Téléphone" required>
                         </div>
 
-                        
+                        <div id="experiences" class="col-span-2">
+                            <h2 class="flex bg-green-600 text-white rounded-xl w-32 h-8 justify-center items-center">Expériences </h2>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="col-span-2 ">
+                                    <label for="poste"
+                                        class="block mb-2.5 text-sm font-medium text-heading">Poste</label>
+                                    <input type="text" name="poste" id="poste"
+                                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                        placeholder="Entrez le Titre du Poste" required>
+                                </div>
+                                <div class="col-span-2 ">
+                                    <label for="entreprise"
+                                        class="block mb-2.5 text-sm font-medium text-heading">l'entreprise</label>
+                                    <input type="text" name="entreprise" id="entreprise"
+                                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                        placeholder="Entrez le Nom de l'entreprise" required>
+                                </div>
+                                <div class="col-span-2 md:col-span-1">
+                                    <label for="DateDebut" class="block mb-2.5 text-sm font-medium text-heading">Date
+                                        debut</label>
+                                    <input type="date" name="DateDebut" id="DateDebut"
+                                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                        placeholder="07/06/1990" required>
+                                </div>
+                                <div class="col-span-2 md:col-span-1">
+                                    <label for="DateFin" class="block mb-2.5 text-sm font-medium text-heading">Date
+                                        fin</label>
+                                    <input type="date" name="DateFin" id="DateFin"
+                                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                                        required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="plusExperiences" class="col-span-2">
+
+                        </div>
+
+                        <div id="autreExperience" class="col-span-2">
+                            <button class="text-body bg-green-600 text-white  w-auto p-3 rounded-xl">ajouter autre expérience</button>
+
+                        </div>
+
+
+
                     </div>
                     <div class="flex items-center space-x-4 border-t border-default pt-4 md:pt-6">
-                        <button id="btnAjouterEmploye" type="submit"
+                        <button id="btnAjouterEmploye" data-modal-hide="ajouterEmploye" type="submit"
                             class="inline-flex items-center  text-white bg-blue-600 hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
-                            
+
                             Ajouter un nouvel employé
                         </button>
                         <button data-modal-hide="ajouterEmploye" type="button"
