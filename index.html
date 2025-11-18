@@ -16,28 +16,9 @@
         <div class="grid w-auto p-3">
             <aside
                 class="flex flex-col gap-3 border border-gray-300 rounded-xl p-4 items-center shadow-sm hover:border-gray-500 hover:shadow-md ">
-                <div class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
-                    <img class="border-2 rounded-full w-[50px] h-[50px]" src="images/imagePersonnale.jpg" alt="image">
-                    <p>zakariae lahmar</p>
-                </div>
-                <div class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
-                    <img class="border-2 rounded-full w-[50px] h-[50px]" src="images/imagePersonnale.jpg" alt="image">
-                    <p>zakariae lahmar</p>
-                </div>
-                <div class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
-                    <img class="border-2 rounded-full w-[50px] h-[50px]" src="images/imagePersonnale.jpg" alt="image">
-                    <p>zakariae lahmar</p>
-                </div>
-                <div class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
-                    <img class="border-2 rounded-full w-[50px] h-[50px]" src="images/imagePersonnale.jpg" alt="image">
-                    <p>zakariae lahmar</p>
-                </div>
-                <div class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
-                    <img class="border-2 rounded-full w-[50px] h-[50px]" src="images/imagePersonnale.jpg" alt="image">
-                    <p>zakariae lahmar</p>
-                </div>
-
-                <div class="flex mt-64">
+                <ul id="listeEmployes" class="grid grid-cols gap-3">
+                </ul>
+                <div class="mt-auto relative">
                     <button data-modal-target="ajouterEmploye" data-modal-toggle="ajouterEmploye"
                         class=" bg-blue-600 border-2 rounded-xl w-64 h-16" type="button">Ajouter un nouvel
                         employé</button>
@@ -156,7 +137,8 @@
                         </div>
 
                         <div id="experiences" class="col-span-2">
-                            <h2 class="flex bg-green-600 text-white rounded-xl w-32 h-8 justify-center items-center">Expériences </h2>
+                            <h2 class="flex bg-green-600 text-white rounded-xl w-32 h-8 justify-center items-center">
+                                Expériences </h2>
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="col-span-2 ">
                                     <label for="poste"
@@ -194,7 +176,8 @@
                         </div>
 
                         <div id="autreExperience" class="col-span-2">
-                            <button class="text-body bg-green-600 text-white  w-auto p-3 rounded-xl">ajouter autre expérience</button>
+                            <button class="text-body bg-green-600 text-white  w-auto p-3 rounded-xl">ajouter autre
+                                expérience</button>
 
                         </div>
 

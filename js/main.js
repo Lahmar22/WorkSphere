@@ -1,6 +1,8 @@
 const btnAjouterEmploye = document.getElementById("btnAjouterEmploye");
 const autreExperience = document.getElementById("autreExperience");
 
+const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
+
 function ajouter() {
     btnAjouterEmploye.addEventListener("click", () => {
         const nom = document.getElementById("nom").value.trim();
@@ -12,6 +14,9 @@ function ajouter() {
         const entreprise = document.getElementById("entreprise").value.trim();
         const DateDebut = document.getElementById("DateDebut").value.trim();
         const DateFin = document.getElementById("DateFin").value.trim();
+
+
+
 
         if (!nom || !role || !photo || !email || !telephone || !poste || !entreprise || !DateDebut || !DateFin) return alert("svp entrez les information ");
 
@@ -37,6 +42,9 @@ function ajouter() {
 
         alert("Added successfully");
     });
+
+    afficherEmployes();
+    
 }
 
 let compteurExp = 0;
@@ -45,7 +53,7 @@ function afficherPlusExp() {
     const plusExperiences = document.getElementById("plusExperiences");
 
     autreExperience.addEventListener('click', () => {
-        
+
 
         compteurExp++;
 
@@ -86,9 +94,33 @@ function afficherPlusExp() {
             </div>
         </div>`;
 
-        plusExperiences.insertAdjacentHTML('beforeend', nouveauFormulaire);
-    });
+        plusExperiences.insertAdjacentHTML('beforeend', nouveauFormulaire);    
+    }); 
 }
+
+
+
+function afficherEmployes(){
+    const listeEmployes = document.getElementById("listeEmployes");
+
+    
+
+    listeEmployes.innerHTML = "";
+
+    users.forEach(u => {
+        const li = document.createElement("li");
+        li.innerHTML=`<button class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center"><img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
+                    <p class="flex flex-col">${u.nom} <small class="flex text-gray-600 justify-left"> ${u.role} </small></p> </button>`;
+
+        listeEmployes.appendChild(li);
+        
+    });
+
+
+
+
+}
+
 
 ajouter();
 afficherPlusExp();
