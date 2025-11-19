@@ -216,7 +216,238 @@ function informationEmp(users) {
 }
 
 
+function listeIT(){
+    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
+
+    const rolesToFilter = [
+        "techniciens it", 
+        "manager",
+        "nettoyage",
+    ];
+
+    const IT = users.filter(user =>
+        user.role && 
+        rolesToFilter.some(role => user.role.toLowerCase().includes(role.toLowerCase()))
+    );
+
+    const ulIT = document.getElementById("ulIT");
+
+    ulIT.innerHTML = "";
+
+    IT.forEach(u => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            <button 
+                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                
+                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
+                <p class="flex flex-col">
+                    ${u.nom}
+                    <small class="text-gray-600"> ${u.role} </small>
+                </p>
+            </button>
+        `;
+
+
+        ulIT.appendChild(li);
+    });
+    
+
+}
+
+function listeReception(){
+    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
+
+    const rolesToFilter = [
+        "réception", 
+        "manager",
+        "nettoyage",
+    ];
+
+    const reception = users.filter(user =>
+        user.role && 
+        rolesToFilter.some(role => user.role.toLowerCase().includes(role.toLowerCase()))
+    );
+
+    const ulReception = document.getElementById("ulReception");
+
+    ulReception.innerHTML = "";
+
+    reception.forEach(u => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            <button 
+                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                
+                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
+                <p class="flex flex-col">
+                    ${u.nom}
+                    <small class="text-gray-600"> ${u.role} </small>
+                </p>
+            </button>
+        `;
+
+
+        ulReception.appendChild(li);
+    });
+    
+
+
+
+}
+
+
+function listeArchives() {
+    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
+
+    const rolesToFilter = [
+        "agents de sécurité",
+        "techniciens it", 
+        "manager",
+        "réception"
+    ];
+
+    const archive = users.filter(user =>
+        user.role && 
+        rolesToFilter.some(role => user.role.toLowerCase().includes(role.toLowerCase()))
+    );
+
+    const ulArchive = document.getElementById("ulArchive");
+
+    ulArchive.innerHTML = "";
+
+    archive.forEach(u => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            <button 
+                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                
+                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
+                <p class="flex flex-col">
+                    ${u.nom}
+                    <small class="text-gray-600"> ${u.role} </small>
+                </p>
+            </button>
+        `;
+
+
+        ulArchive.appendChild(li);
+    });
+}
+
+
+
+function listeConference() {
+    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
+    const ulConference = document.getElementById("ulConference");
+
+    ulConference.innerHTML = "";
+
+    users.forEach(u => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            <button 
+                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                
+                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
+                <p class="flex flex-col">
+                    ${u.nom}
+                    <small class="text-gray-600"> ${u.role} </small>
+                </p>
+            </button>
+        `;
+
+
+        ulConference.appendChild(li);
+    });
+    
+
+   
+}
+
+
+function listePersonne() {
+    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
+    const ulPersonne = document.getElementById("ulPersonne");
+
+    ulPersonne.innerHTML = "";
+
+    users.forEach(u => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            <button 
+                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                
+                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
+                <p class="flex flex-col">
+                    ${u.nom}
+                    <small class="text-gray-600"> ${u.role} </small>
+                </p>
+            </button>
+        `;
+
+
+        ulPersonne.appendChild(li);
+    });
+    
+
+   
+}
+
+
+function listeSecurite() {
+    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
+
+    const rolesToFilter = [
+        "agents de sécurité",
+        "manager",
+        "nettoyage",
+    ];
+
+    const securite = users.filter(user =>
+        user.role && 
+        rolesToFilter.some(role => user.role.toLowerCase().includes(role.toLowerCase()))
+    );
+
+    const ulSecurite = document.getElementById("ulSecurite");
+
+    ulSecurite.innerHTML = "";
+
+    securite.forEach(u => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            <button 
+                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                
+                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
+                <p class="flex flex-col">
+                    ${u.nom}
+                    <small class="text-gray-600"> ${u.role} </small>
+                </p>
+            </button>
+        `;
+
+
+        ulSecurite.appendChild(li);
+    });
+}
+
+
+
+
 
 ajouter();
 afficherPlusExp();
+listeConference();
 
+listeIT();
+listeReception();
+listeSecurite();
+listeArchives();
+listePersonne();
