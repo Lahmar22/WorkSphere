@@ -1,53 +1,73 @@
 const btnAjouterEmploye = document.getElementById("btnAjouterEmploye");
 const autreExperience = document.getElementById("autreExperience");
 
+let compteurExp = 0;
+
 const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
 
 function ajouter() {
     btnAjouterEmploye.addEventListener("click", () => {
+
         const nom = document.getElementById("nom").value.trim();
         const role = document.getElementById("role").value.trim();
         const photo = document.getElementById("photo").value.trim();
         const email = document.getElementById("email").value.trim();
         const telephone = document.getElementById("telephone").value.trim();
+
+        if (!nom || !role || !photo || !email || !telephone)
+            return alert("Veuillez remplir toutes les informations de base.");
+
         const poste = document.getElementById("poste").value.trim();
         const entreprise = document.getElementById("entreprise").value.trim();
         const DateDebut = document.getElementById("DateDebut").value.trim();
         const DateFin = document.getElementById("DateFin").value.trim();
 
+        if (!poste || !entreprise || !DateDebut || !DateFin)
+            return alert("Veuillez remplir l'expérience principale.");
 
+        let experiences = [{
+            poste,
+            entreprise,
+            DateDebut,
+            DateFin,
+        }];
 
+        for (let i = 1; i <= compteurExp; i++) {
+            const p = document.getElementById(`poste-${i}`).value.trim();
+            const e = document.getElementById(`entreprise-${i}`).value.trim();
+            const d1 = document.getElementById(`DateDebut-${i}`).value.trim();
+            const d2 = document.getElementById(`DateFin-${i}`).value.trim();
 
-        if (!nom || !role || !photo || !email || !telephone || !poste || !entreprise || !DateDebut || !DateFin) return alert("svp entrez les information ");
-
+            if (p && e && d1 && d2) {
+                experiences.push({
+                    poste: p,
+                    entreprise: e,
+                    DateDebut: d1,
+                    DateFin: d2,
+                });
+            }
+        }
 
         const utilisateur = {
-            nom: nom,
-            role: role,
-            photo: photo,
-            email: email,
-            telephone: telephone,
-            experiences: {
-                poste: poste,
-                entreprise: entreprise,
-                DateDebut: DateDebut,
-                DateFin: DateFin,
-            },
-        }
+            nom,
+            role,
+            photo,
+            email,
+            telephone,
+            experiences
+        };
 
         const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
         users.push(utilisateur);
+
         localStorage.setItem("utilisateur", JSON.stringify(users));
 
-
-        alert("Added successfully");
+        alert("Employé ajouté avec succès !");
     });
 
     afficherEmployes();
-    
 }
 
-let compteurExp = 0;
 
 function afficherPlusExp() {
     const plusExperiences = document.getElementById("plusExperiences");
@@ -94,33 +114,109 @@ function afficherPlusExp() {
             </div>
         </div>`;
 
-        plusExperiences.insertAdjacentHTML('beforeend', nouveauFormulaire);    
-    }); 
+        plusExperiences.insertAdjacentHTML('beforeend', nouveauFormulaire);
+
+
+
+    });
 }
 
 
 
-function afficherEmployes(){
+
+function afficherEmployes() {
     const listeEmployes = document.getElementById("listeEmployes");
-
-    
-
     listeEmployes.innerHTML = "";
 
     users.forEach(u => {
         const li = document.createElement("li");
-        li.innerHTML=`<button class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center"><img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
-                    <p class="flex flex-col">${u.nom} <small class="flex text-gray-600 justify-left"> ${u.role} </small></p> </button>`;
+
+        li.innerHTML = `
+            <button 
+                data-modal-target="informationEmp" 
+                data-modal-toggle="informationEmp"
+                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                
+                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
+                <p class="flex flex-col">
+                    ${u.nom} 
+                    <small class="text-gray-600"> ${u.role} </small>
+                </p>
+            </button>
+        `;
+
+        const btn = li.querySelector("button");
+
+        btn.addEventListener("click", () => {
+            informationEmp(u);
+        });
 
         listeEmployes.appendChild(li);
-        
     });
+}
 
 
+function informationEmp(users) {
+    const image = document.getElementById("image");
+    const nomEmp = document.getElementById("nomEmp");
+    const roleEmp = document.getElementById("roleEmp");
+    const emailEmp = document.getElementById("emailEmp");
+    const telephoneEmp = document.getElementById("telephoneEmp");
+    const experiencesPlus = document.getElementById("experiencesPlus");
+
+    experiencesPlus.innerHTML = "";
+
+    image.innerHTML = `<img src="${users.photo}" alt="image">`
+    nomEmp.innerHTML = `<h1>${users.nom}</h1>`
+    roleEmp.innerHTML = `<p>${users.role}</p>`
+    emailEmp.innerHTML = `<p>${users.email}</p>`
+    telephoneEmp.innerHTML = `<p>${users.telephone}</p>`
+    console.log(users.experiences);
+    users.experiences.forEach((u, index) => {
+        experiencesPlus.innerHTML += `<div class="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-xl border shadow-sm">
+
+    <div class="col-span-2">
+        <h2 class="text-green-600 font-semibold text-lg">
+            Expérience ${index + 1}
+        </h2>
+    </div>
+
+    <div class="col-span-2 md:col-span-1 flex flex-col gap-1">
+        <label class="text-xs text-gray-500">Poste</label>
+        <div class="p-3 bg-white rounded-lg border text-sm text-gray-800">
+            ${u.poste}
+        </div>
+    </div>
+
+    <div class="col-span-2 md:col-span-1 flex flex-col gap-1">
+        <label class="text-xs text-gray-500">Entreprise</label>
+        <div class="p-3 bg-white rounded-lg border text-sm text-gray-800">
+            ${u.entreprise}
+        </div>
+    </div>
+
+    <div class="col-span-2 md:col-span-1 flex flex-col gap-1">
+        <label class="text-xs text-gray-500">Date début</label>
+        <div class="p-3 bg-white rounded-lg border text-sm text-gray-800">
+            ${u.DateDebut}
+        </div>
+    </div>
+
+    <div class="col-span-2 md:col-span-1 flex flex-col gap-1">
+        <label class="text-xs text-gray-500">Date fin</label>
+        <div class="p-3 bg-white rounded-lg border text-sm text-gray-800">
+            ${u.DateFin}
+        </div>
+    </div>
+
+</div>`;
+    })
 
 
 }
 
 
+
 ajouter();
 afficherPlusExp();
+
