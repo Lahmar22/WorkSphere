@@ -54,6 +54,7 @@ function ajouter() {
             photo,
             email,
             telephone,
+            assigned: true,
             experiences
         };
 
@@ -216,21 +217,23 @@ function informationEmp(users) {
 }
 
 
-function listeIT(){
+function listeIT() {
     const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
 
     const rolesToFilter = [
-        "techniciens it", 
+        "techniciens it",
         "manager",
         "nettoyage",
     ];
 
     const IT = users.filter(user =>
-        user.role && 
+        user.role &&
         rolesToFilter.some(role => user.role.toLowerCase().includes(role.toLowerCase()))
     );
 
     const ulIT = document.getElementById("ulIT");
+
+    const assignedServeur = document.getElementById("assignedServeur");
 
     ulIT.innerHTML = "";
 
@@ -239,7 +242,7 @@ function listeIT(){
 
         li.innerHTML = `
             <button 
-                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                class="btnIt flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
                 
                 <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
                 <p class="flex flex-col">
@@ -251,26 +254,32 @@ function listeIT(){
 
 
         ulIT.appendChild(li);
+
+        li.querySelector(".btnIt").addEventListener("click", () => {
+            assignEmployee(u , assignedServeur);
+        });
     });
-    
+
 
 }
 
-function listeReception(){
+function listeReception() {
     const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
 
     const rolesToFilter = [
-        "réception", 
+        "réception",
         "manager",
         "nettoyage",
     ];
 
     const reception = users.filter(user =>
-        user.role && 
+        user.role &&
         rolesToFilter.some(role => user.role.toLowerCase().includes(role.toLowerCase()))
     );
 
     const ulReception = document.getElementById("ulReception");
+
+    const assignedReception = document.getElementById("assignedReception");
 
     ulReception.innerHTML = "";
 
@@ -279,7 +288,7 @@ function listeReception(){
 
         li.innerHTML = `
             <button 
-                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                class="btnReception flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
                 
                 <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
                 <p class="flex flex-col">
@@ -291,8 +300,12 @@ function listeReception(){
 
 
         ulReception.appendChild(li);
+
+        li.querySelector(".btnReception").addEventListener("click", () => {
+            assignEmployee(u , assignedReception);
+        });
     });
-    
+
 
 
 
@@ -304,17 +317,18 @@ function listeArchives() {
 
     const rolesToFilter = [
         "agents de sécurité",
-        "techniciens it", 
+        "techniciens it",
         "manager",
         "réception"
     ];
 
     const archive = users.filter(user =>
-        user.role && 
+        user.role &&
         rolesToFilter.some(role => user.role.toLowerCase().includes(role.toLowerCase()))
     );
 
     const ulArchive = document.getElementById("ulArchive");
+    const assignedArchive = document.getElementById("assignedArchive");
 
     ulArchive.innerHTML = "";
 
@@ -323,7 +337,7 @@ function listeArchives() {
 
         li.innerHTML = `
             <button 
-                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                class="btnArchive flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
                 
                 <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
                 <p class="flex flex-col">
@@ -335,6 +349,10 @@ function listeArchives() {
 
 
         ulArchive.appendChild(li);
+
+        li.querySelector(".btnArchive").addEventListener("click", () => {
+            assignEmployee(u , assignedArchive);
+        });
     });
 }
 
@@ -344,14 +362,16 @@ function listeConference() {
     const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
     const ulConference = document.getElementById("ulConference");
 
+    const assignedConference = document.getElementById("assignedConference");
+
     ulConference.innerHTML = "";
 
     users.forEach(u => {
         const li = document.createElement("li");
 
         li.innerHTML = `
-            <button 
-                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+            <button
+                class="btnConference flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
                 
                 <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
                 <p class="flex flex-col">
@@ -363,16 +383,21 @@ function listeConference() {
 
 
         ulConference.appendChild(li);
-    });
-    
 
-   
+        li.querySelector(".btnConference").addEventListener("click", () => {
+            assignEmployee(u , assignedConference);
+        });
+    });
+
+
+
 }
 
 
 function listePersonne() {
     const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
     const ulPersonne = document.getElementById("ulPersonne");
+    const assignedPersonne = document.getElementById("assignedPersonne");
 
     ulPersonne.innerHTML = "";
 
@@ -381,7 +406,7 @@ function listePersonne() {
 
         li.innerHTML = `
             <button 
-                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                class="btnPersonne flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
                 
                 <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
                 <p class="flex flex-col">
@@ -393,51 +418,79 @@ function listePersonne() {
 
 
         ulPersonne.appendChild(li);
+        li.querySelector(".btnPersonne").addEventListener("click", () => {
+             assignEmployee(u , assignedPersonne);
+        });
     });
-    
 
-   
+
+
 }
 
 
 function listeSecurite() {
     const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
 
-    const rolesToFilter = [
-        "agents de sécurité",
-        "manager",
-        "nettoyage",
-    ];
+    const rolesToFilter = ["agents de sécurité", "manager", "nettoyage"];
 
     const securite = users.filter(user =>
-        user.role && 
+        user.role &&
         rolesToFilter.some(role => user.role.toLowerCase().includes(role.toLowerCase()))
     );
 
     const ulSecurite = document.getElementById("ulSecurite");
-
+    const assignedSecurite = document.getElementById("assignedSecurite");
     ulSecurite.innerHTML = "";
 
-    securite.forEach(u => {
+    securite.forEach((u) => {
         const li = document.createElement("li");
 
         li.innerHTML = `
             <button 
-                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                class="btnSecurite flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
                 
-                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
+                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}">
                 <p class="flex flex-col">
                     ${u.nom}
-                    <small class="text-gray-600"> ${u.role} </small>
+                    <small class="text-gray-600">${u.role}</small>
                 </p>
             </button>
         `;
 
-
         ulSecurite.appendChild(li);
+
+        li.querySelector(".btnSecurite").addEventListener("click", () => {
+            assignEmployee(u , assignedSecurite);
+        });
     });
 }
 
+function assignEmployee(u , id) {
+
+    const li = document.createElement("li");
+
+    li.classList.add("assigned-item");
+
+    li.innerHTML = `
+        <div class="flex bg-white p-3 gap-3 border-2 rounded w-[180px] h-[50px] items-center justify-between">
+
+            <div class="flex items-center gap-2">
+                <img class="border-2 rounded-full w-[30px] h-[30px]" src="${u.photo}">
+                <small class="text-gray-600">${u.nom}</small>
+            </div>
+
+            <button class="removeBtn text-red-500 font-bold text-lg">×</button>
+        </div>
+    `;
+
+    id.appendChild(li);
+
+    li.querySelector(".removeBtn").addEventListener("click", () => {
+        li.remove();
+    });
+
+    
+}
 
 
 
@@ -451,3 +504,4 @@ listeReception();
 listeSecurite();
 listeArchives();
 listePersonne();
+
