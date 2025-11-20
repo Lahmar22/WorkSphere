@@ -1,29 +1,29 @@
 const btnAjouterEmploye = document.getElementById("btnAjouterEmploye");
 const autreExperience = document.getElementById("autreExperience");
-
 let compteurExp = 0;
 
-const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
-
 function ajouter() {
+
     btnAjouterEmploye.addEventListener("click", () => {
 
-        const nom = document.getElementById("nom").value.trim();
-        const role = document.getElementById("role").value.trim();
-        const photo = document.getElementById("photo").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const telephone = document.getElementById("telephone").value.trim();
+        const nom = document.getElementById("nom")?.value.trim();
+        const role = document.getElementById("role")?.value.trim();
+        const photo = document.getElementById("photo")?.value.trim();
+        const email = document.getElementById("email")?.value.trim();
+        const telephone = document.getElementById("telephone")?.value.trim();
 
-        if (!nom || !role || !photo || !email || !telephone)
+        if (!nom || !role || !photo || !email || !telephone) {
             return alert("Veuillez remplir toutes les informations de base.");
+        }
 
-        const poste = document.getElementById("poste").value.trim();
-        const entreprise = document.getElementById("entreprise").value.trim();
-        const DateDebut = document.getElementById("DateDebut").value.trim();
-        const DateFin = document.getElementById("DateFin").value.trim();
+        const poste = document.getElementById("poste")?.value.trim();
+        const entreprise = document.getElementById("entreprise")?.value.trim();
+        const DateDebut = document.getElementById("DateDebut")?.value.trim();
+        const DateFin = document.getElementById("DateFin")?.value.trim();
 
-        if (!poste || !entreprise || !DateDebut || !DateFin)
+        if (!poste || !entreprise || !DateDebut || !DateFin) {
             return alert("Veuillez remplir l'expérience principale.");
+        }
 
         let experiences = [{
             poste,
@@ -33,10 +33,10 @@ function ajouter() {
         }];
 
         for (let i = 1; i <= compteurExp; i++) {
-            const p = document.getElementById(`poste-${i}`).value.trim();
-            const e = document.getElementById(`entreprise-${i}`).value.trim();
-            const d1 = document.getElementById(`DateDebut-${i}`).value.trim();
-            const d2 = document.getElementById(`DateFin-${i}`).value.trim();
+            const p = document.getElementById(`poste-${i}`)?.value.trim();
+            const e = document.getElementById(`entreprise-${i}`)?.value.trim();
+            const d1 = document.getElementById(`DateDebut-${i}`)?.value.trim();
+            const d2 = document.getElementById(`DateFin-${i}`)?.value.trim();
 
             if (p && e && d1 && d2) {
                 experiences.push({
@@ -54,19 +54,19 @@ function ajouter() {
             photo,
             email,
             telephone,
-            assigned: true,
+            assigned: false,
+            departmentId: null,
             experiences
         };
 
-        const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
-        users.push(utilisateur);
+        const currentUsers = JSON.parse(localStorage.getItem("utilisateur")) || [];
+        currentUsers.push(utilisateur);
 
-        localStorage.setItem("utilisateur", JSON.stringify(users));
+        localStorage.setItem("utilisateur", JSON.stringify(currentUsers));
 
         alert("Employé ajouté avec succès !");
-    });
 
-    afficherEmployes();
+    });
 }
 
 
@@ -74,90 +74,87 @@ function afficherPlusExp() {
     const plusExperiences = document.getElementById("plusExperiences");
 
     autreExperience.addEventListener('click', () => {
-
-
         compteurExp++;
 
         const nouveauFormulaire = `
-        <div id="experiences-${compteurExp}" class="col-span-2 p-3 border-t mt-4">
-            <h2 class="flex bg-green-600 rounded-xl w-32 h-8 justify-center items-center text-white mb-4">
-                Expérience ${compteurExp}
-            </h2>
-            
-            <div class="grid grid-cols-2 gap-4">
-                <div class="col-span-2">
-                    <label for="poste-${compteurExp}" class="block mb-2.5 text-sm font-medium text-heading">Poste</label>
-                    <input type="text" name="poste[]" id="poste-${compteurExp}"
-                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                        placeholder="Entrez le Titre du Poste" required>
-                </div>
+            <div id="experiences-${compteurExp}" class="col-span-2 p-3 border-t mt-4">
+                <h2 class="flex bg-green-600 rounded-xl w-32 h-8 justify-center items-center text-white mb-4">
+                    Expérience ${compteurExp}
+                </h2>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2">
+                        <label for="poste-${compteurExp}" class="block mb-2.5 text-sm font-medium text-heading">Poste</label>
+                        <input type="text" name="poste[]" id="poste-${compteurExp}"
+                            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                            placeholder="Entrez le Titre du Poste" required>
+                    </div>
 
-                <div class="col-span-2">
-                    <label for="entreprise-${compteurExp}" class="block mb-2.5 text-sm font-medium text-heading">Entreprise</label>
-                    <input type="text" name="entreprise[]" id="entreprise-${compteurExp}"
-                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                        placeholder="Entrez le Nom de l'entreprise" required>
-                </div>
+                    <div class="col-span-2">
+                        <label for="entreprise-${compteurExp}" class="block mb-2.5 text-sm font-medium text-heading">Entreprise</label>
+                        <input type="text" name="entreprise[]" id="entreprise-${compteurExp}"
+                            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                            placeholder="Entrez le Nom de l'entreprise" required>
+                    </div>
 
-                <div class="col-span-2 md:col-span-1">
-                    <label for="DateDebut-${compteurExp}" class="block mb-2.5 text-sm font-medium text-heading">Date début</label>
-                    <input type="date" name="DateDebut[]" id="DateDebut-${compteurExp}"
-                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                        required>
-                </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <label for="DateDebut-${compteurExp}" class="block mb-2.5 text-sm font-medium text-heading">Date début</label>
+                        <input type="date" name="DateDebut[]" id="DateDebut-${compteurExp}"
+                            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                            required>
+                    </div>
 
-                <div class="col-span-2 md:col-span-1">
-                    <label for="DateFin-${compteurExp}" class="block mb-2.5 text-sm font-medium text-heading">Date fin</label>
-                    <input type="date" name="DateFin[]" id="DateFin-${compteurExp}"
-                        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                        required>
+                    <div class="col-span-2 md:col-span-1">
+                        <label for="DateFin-${compteurExp}" class="block mb-2.5 text-sm font-medium text-heading">Date fin</label>
+                        <input type="date" name="DateFin[]" id="DateFin-${compteurExp}"
+                            class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                            required>
+                    </div>
                 </div>
-            </div>
-        </div>`;
+            </div>`;
 
         plusExperiences.insertAdjacentHTML('beforeend', nouveauFormulaire);
-
-
-
     });
 }
-
-
-
 
 function afficherEmployes() {
     const listeEmployes = document.getElementById("listeEmployes");
+    if (!listeEmployes) return;
+
     listeEmployes.innerHTML = "";
+    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
 
     users.forEach(u => {
-        const li = document.createElement("li");
+        if (u.assigned === false) {
+            const li = document.createElement("li");
 
-        li.innerHTML = `
-            <button 
-                data-modal-target="informationEmp" 
-                data-modal-toggle="informationEmp"
-                class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
-                
-                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
-                <p class="flex flex-col">
-                    ${u.nom} 
-                    <small class="text-gray-600"> ${u.role} </small>
-                </p>
-            </button>
-        `;
+            li.innerHTML = `
+                <button 
+                    data-modal-target="informationEmp" 
+                    data-modal-toggle="informationEmp"
+                    class="flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                    
+                    <img class="border-2 rounded-full w-[50px] h-[50px] object-cover" src="${u.photo}" alt="image">
+                    <p class="flex flex-col text-left">
+                        ${u.nom} 
+                        <small class="text-gray-600"> ${u.role} </small>
+                    </p>
+                </button>
+                `;
 
-        const btn = li.querySelector("button");
+            const btn = li.querySelector("button");
 
-        btn.addEventListener("click", () => {
-            informationEmp(u);
-        });
+            btn.addEventListener("click", () => {
+                informationEmp(u);
+            });
 
-        listeEmployes.appendChild(li);
+            listeEmployes.appendChild(li);
+        }
     });
 }
 
 
-function informationEmp(users) {
+function informationEmp(user) {
     const image = document.getElementById("image");
     const nomEmp = document.getElementById("nomEmp");
     const roleEmp = document.getElementById("roleEmp");
@@ -165,343 +162,226 @@ function informationEmp(users) {
     const telephoneEmp = document.getElementById("telephoneEmp");
     const experiencesPlus = document.getElementById("experiencesPlus");
 
+    if (!image || !nomEmp || !roleEmp || !emailEmp || !telephoneEmp || !experiencesPlus) return;
+
     experiencesPlus.innerHTML = "";
 
-    image.innerHTML = `<img src="${users.photo}" alt="image">`
-    nomEmp.innerHTML = `<h1>${users.nom}</h1>`
-    roleEmp.innerHTML = `<p>${users.role}</p>`
-    emailEmp.innerHTML = `<p>${users.email}</p>`
-    telephoneEmp.innerHTML = `<p>${users.telephone}</p>`
-    console.log(users.experiences);
-    users.experiences.forEach((u, index) => {
+    image.innerHTML = `<img class="w-full h-full object-cover rounded-full" src="${user.photo}" alt="image">`;
+    nomEmp.innerHTML = `<h1 class="text-xl font-bold">${user.nom}</h1>`;
+    roleEmp.innerHTML = `<p class="text-gray-600">${user.role}</p>`;
+    emailEmp.innerHTML = `<p>${user.email}</p>`;
+    telephoneEmp.innerHTML = `<p>${user.telephone}</p>`;
+
+    user.experiences.forEach((exp, index) => {
         experiencesPlus.innerHTML += `<div class="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-xl border shadow-sm">
 
-    <div class="col-span-2">
-        <h2 class="text-green-600 font-semibold text-lg">
-            Expérience ${index + 1}
-        </h2>
-    </div>
-
-    <div class="col-span-2 md:col-span-1 flex flex-col gap-1">
-        <label class="text-xs text-gray-500">Poste</label>
-        <div class="p-3 bg-white rounded-lg border text-sm text-gray-800">
-            ${u.poste}
+        <div class="col-span-2">
+            <h2 class="text-green-600 font-semibold text-lg">
+                Expérience ${index + 1}
+            </h2>
         </div>
-    </div>
 
-    <div class="col-span-2 md:col-span-1 flex flex-col gap-1">
-        <label class="text-xs text-gray-500">Entreprise</label>
-        <div class="p-3 bg-white rounded-lg border text-sm text-gray-800">
-            ${u.entreprise}
+        <div class="col-span-2 md:col-span-1 flex flex-col gap-1">
+            <label class="text-xs text-gray-500">Poste</label>
+            <div class="p-3 bg-white rounded-lg border text-sm text-gray-800">
+                ${exp.poste}
+            </div>
         </div>
-    </div>
 
-    <div class="col-span-2 md:col-span-1 flex flex-col gap-1">
-        <label class="text-xs text-gray-500">Date début</label>
-        <div class="p-3 bg-white rounded-lg border text-sm text-gray-800">
-            ${u.DateDebut}
+        <div class="col-span-2 md:col-span-1 flex flex-col gap-1">
+            <label class="text-xs text-gray-500">Entreprise</label>
+            <div class="p-3 bg-white rounded-lg border text-sm text-gray-800">
+                ${exp.entreprise}
+            </div>
         </div>
-    </div>
 
-    <div class="col-span-2 md:col-span-1 flex flex-col gap-1">
-        <label class="text-xs text-gray-500">Date fin</label>
-        <div class="p-3 bg-white rounded-lg border text-sm text-gray-800">
-            ${u.DateFin}
+        <div class="col-span-2 md:col-span-1 flex flex-col gap-1">
+            <label class="text-xs text-gray-500">Date début</label>
+            <div class="p-3 bg-white rounded-lg border text-sm text-gray-800">
+                ${exp.DateDebut}
+            </div>
         </div>
-    </div>
 
-</div>`;
-    })
+        <div class="col-span-2 md:col-span-1 flex flex-col gap-1">
+            <label class="text-xs text-gray-500">Date fin</label>
+            <div class="p-3 bg-white rounded-lg border text-sm text-gray-800">
+                ${exp.DateFin}
+            </div>
+        </div>
 
-
+    </div>`;
+    });
 }
 
 
-function listeIT() {
-    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
+function listeEmployesParRole(ulId, containerId, rolesToFilter, departmentId, salleId) {
+    const ulElement = document.getElementById(ulId);
+    const assignedContainer = document.getElementById(containerId);
+    const salle = document.getElementById(salleId);
 
-    const rolesToFilter = [
-        "techniciens it",
-        "manager",
-        "nettoyage",
-    ];
+    if (!ulElement || !assignedContainer) return;
 
-    const IT = users.filter(user =>
+    ulElement.innerHTML = "";
+    const allUsers = JSON.parse(localStorage.getItem("utilisateur")) || [];
+
+    const filteredUsers = allUsers.filter(user =>
+        user.assigned === false &&
         user.role &&
         rolesToFilter.some(role => user.role.toLowerCase().includes(role.toLowerCase()))
     );
 
-    const ulIT = document.getElementById("ulIT");
-
-    const assignedServeur = document.getElementById("assignedServeur");
-
-    ulIT.innerHTML = "";
-
-    IT.forEach(u => {
+    filteredUsers.forEach(u => {
         const li = document.createElement("li");
 
         li.innerHTML = `
             <button 
-                class="btnIt flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
+                class="btnDept flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
                 
-                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
-                <p class="flex flex-col">
+                <img class="border-2 rounded-full w-[50px] h-[50px] object-cover" src="${u.photo}" alt="image">
+                <p class="flex flex-col text-left">
                     ${u.nom}
                     <small class="text-gray-600"> ${u.role} </small>
                 </p>
             </button>
-        `;
+            `;
+
+        ulElement.appendChild(li);
+
+        li.querySelector(".btnDept").addEventListener("click", () => {
+
+            const userIndex = allUsers.findIndex(user => user.email === u.email);
+
+            if (userIndex !== -1) {
+                allUsers[userIndex].assigned = true;
+                allUsers[userIndex].departmentId = departmentId;
+                localStorage.setItem("utilisateur", JSON.stringify(allUsers));
+            }
 
 
-        ulIT.appendChild(li);
+            assignEmployee(allUsers[userIndex], assignedContainer, salle);
 
-        li.querySelector(".btnIt").addEventListener("click", () => {
-            assignEmployee(u , assignedServeur);
+            afficherEmployes();
+
+            li.remove();
         });
     });
 
-
-}
-
-function listeReception() {
-    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
-
-    const rolesToFilter = [
-        "réception",
-        "manager",
-        "nettoyage",
-    ];
-
-    const reception = users.filter(user =>
-        user.role &&
-        rolesToFilter.some(role => user.role.toLowerCase().includes(role.toLowerCase()))
-    );
-
-    const ulReception = document.getElementById("ulReception");
-
-    const assignedReception = document.getElementById("assignedReception");
-
-    ulReception.innerHTML = "";
-
-    reception.forEach(u => {
-        const li = document.createElement("li");
-
-        li.innerHTML = `
-            <button 
-                class="btnReception flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
-                
-                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
-                <p class="flex flex-col">
-                    ${u.nom}
-                    <small class="text-gray-600"> ${u.role} </small>
-                </p>
-            </button>
-        `;
-
-
-        ulReception.appendChild(li);
-
-        li.querySelector(".btnReception").addEventListener("click", () => {
-            assignEmployee(u , assignedReception);
-        });
-    });
-
-
-
-
-}
-
-
-function listeArchives() {
-    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
-
-    const rolesToFilter = [
-        "agents de sécurité",
-        "techniciens it",
-        "manager",
-        "réception"
-    ];
-
-    const archive = users.filter(user =>
-        user.role &&
-        rolesToFilter.some(role => user.role.toLowerCase().includes(role.toLowerCase()))
-    );
-
-    const ulArchive = document.getElementById("ulArchive");
-    const assignedArchive = document.getElementById("assignedArchive");
-
-    ulArchive.innerHTML = "";
-
-    archive.forEach(u => {
-        const li = document.createElement("li");
-
-        li.innerHTML = `
-            <button 
-                class="btnArchive flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
-                
-                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
-                <p class="flex flex-col">
-                    ${u.nom}
-                    <small class="text-gray-600"> ${u.role} </small>
-                </p>
-            </button>
-        `;
-
-
-        ulArchive.appendChild(li);
-
-        li.querySelector(".btnArchive").addEventListener("click", () => {
-            assignEmployee(u , assignedArchive);
-        });
+    const assignedUsers = allUsers.filter(user => user.departmentId === departmentId);
+    assignedUsers.forEach(u => {
+        assignEmployee(u, assignedContainer);
     });
 }
 
-
-
-function listeConference() {
-    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
-    const ulConference = document.getElementById("ulConference");
-
-    const assignedConference = document.getElementById("assignedConference");
-
-    ulConference.innerHTML = "";
-
-    users.forEach(u => {
-        const li = document.createElement("li");
-
-        li.innerHTML = `
-            <button
-                class="btnConference flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
-                
-                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
-                <p class="flex flex-col">
-                    ${u.nom}
-                    <small class="text-gray-600"> ${u.role} </small>
-                </p>
-            </button>
-        `;
-
-
-        ulConference.appendChild(li);
-
-        li.querySelector(".btnConference").addEventListener("click", () => {
-            assignEmployee(u , assignedConference);
-        });
-    });
-
-
-
-}
-
-
-function listePersonne() {
-    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
-    const ulPersonne = document.getElementById("ulPersonne");
-    const assignedPersonne = document.getElementById("assignedPersonne");
-
-    ulPersonne.innerHTML = "";
-
-    users.forEach(u => {
-        const li = document.createElement("li");
-
-        li.innerHTML = `
-            <button 
-                class="btnPersonne flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
-                
-                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}" alt="image">
-                <p class="flex flex-col">
-                    ${u.nom}
-                    <small class="text-gray-600"> ${u.role} </small>
-                </p>
-            </button>
-        `;
-
-
-        ulPersonne.appendChild(li);
-        li.querySelector(".btnPersonne").addEventListener("click", () => {
-             assignEmployee(u , assignedPersonne);
-        });
-    });
-
-
-
-}
-
-
-function listeSecurite() {
-    const users = JSON.parse(localStorage.getItem("utilisateur")) || [];
-
-    const rolesToFilter = ["agents de sécurité", "manager", "nettoyage"];
-
-    const securite = users.filter(user =>
-        user.role &&
-        rolesToFilter.some(role => user.role.toLowerCase().includes(role.toLowerCase()))
-    );
-
-    const ulSecurite = document.getElementById("ulSecurite");
-    const assignedSecurite = document.getElementById("assignedSecurite");
-    ulSecurite.innerHTML = "";
-
-    securite.forEach((u) => {
-        const li = document.createElement("li");
-
-        li.innerHTML = `
-            <button 
-                class="btnSecurite flex bg-white p-3 gap-3 border-2 rounded w-[300px] h-[80px] items-center">
-                
-                <img class="border-2 rounded-full w-[50px] h-[50px]" src="${u.photo}">
-                <p class="flex flex-col">
-                    ${u.nom}
-                    <small class="text-gray-600">${u.role}</small>
-                </p>
-            </button>
-        `;
-
-        ulSecurite.appendChild(li);
-
-        li.querySelector(".btnSecurite").addEventListener("click", () => {
-            assignEmployee(u , assignedSecurite);
-        });
-    });
-}
-
-function assignEmployee(u , id) {
-
+function assignEmployee(u, container, salle) {
     const li = document.createElement("li");
-
     li.classList.add("assigned-item");
+    li.setAttribute("data-email", u.email);
+
+    salle.classList.remove("bg-red-500", "bg-opacity-50");
+    salle.classList.add("bg-transparent");
+
+    if (container.querySelector(`li[data-email="${u.email}"]`)) {
+        return;
+    }
 
     li.innerHTML = `
         <div class="flex bg-white p-3 gap-3 border-2 rounded w-[180px] h-[50px] items-center justify-between">
-
             <div class="flex items-center gap-2">
-                <img class="border-2 rounded-full w-[30px] h-[30px]" src="${u.photo}">
+                <img class="border-2 rounded-full w-[30px] h-[30px] object-cover" src="${u.photo}" alt="image">
                 <small class="text-gray-600">${u.nom}</small>
             </div>
-
-            <button class="removeBtn text-red-500 font-bold text-lg">×</button>
+            <button class="removeBtn text-red-500 font-bold text-lg cursor-pointer">×</button>
         </div>
-    `;
+        `;
 
-    id.appendChild(li);
+    container.appendChild(li);
 
     li.querySelector(".removeBtn").addEventListener("click", () => {
-        li.remove();
-    });
+        const currentUsers = JSON.parse(localStorage.getItem("utilisateur")) || [];
 
-    
+        const userIndex = currentUsers.findIndex(user => user.email === u.email);
+
+        if (userIndex !== -1) {
+
+            currentUsers[userIndex].assigned = false;
+            currentUsers[userIndex].departmentId = null;
+
+            localStorage.setItem("utilisateur", JSON.stringify(currentUsers));
+            li.remove();
+            if (container.children.length === 0) {
+                salle.classList.remove("bg-transparent");
+                salle.classList.add("bg-red-500", "bg-opacity-50");
+            }
+        }
+    });
 }
 
+function listeIT() {
+    listeEmployesParRole(
+        "ulIT",
+        "assignedServeur",
+        ["techniciens it", "manager", "nettoyage"],
+        "assignedServeur",
+        "salleServeurs"
+    );
+}
 
+function listeReception() {
+    listeEmployesParRole(
+        "ulReception",
+        "assignedReception",
+        ["réception", "manager", "nettoyage"],
+        "assignedReception",
+        "salleReception"
+    );
+}
 
+function listeSecurite() {
+    listeEmployesParRole(
+        "ulSecurite",
+        "assignedSecurite",
+        ["sécurité", "manager", "nettoyage"],
+        "assignedSecurite",
+        "salleSecurite"
+    );
+}
+
+function listeArchives() {
+    listeEmployesParRole(
+        "ulArchive",
+        "assignedArchive",
+        ["sécurité", "techniciens it", "manager", "réception"],
+        "assignedArchive",
+        "salleArchive"
+    );
+}
+
+function listeConference() {
+    listeEmployesParRole(
+        "ulConference",
+        "assignedConference",
+        ["techniciens it", "manager", "réception", "sécurité", "nettoyage"],
+        "assignedConference",
+        "salleConference",
+    );
+}
+
+function listePersonne() {
+    listeEmployesParRole(
+        "ulPersonne",
+        "assignedPersonne",
+        ["techniciens it", "manager", "réception", "sécurité", "nettoyage"],
+        "assignedPersonne",
+        "sallePersonne"
+    );
+}
 
 ajouter();
 afficherPlusExp();
-listeConference();
-
+afficherEmployes();
 listeIT();
 listeReception();
 listeSecurite();
 listeArchives();
+listeConference();
 listePersonne();
-
