@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeListeConference = document.getElementById("closeListeConference");
     closeListeConference.addEventListener("click", () => {
         const listeConference = document.getElementById("listeConference");
-        listeConference.classList.remove("clock");
+        listeConference.classList.remove("block");
         listeConference.classList.add("hidden");
     });
 
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeListeReception = document.getElementById("closeListeReception");
     closeListeReception.addEventListener("click", () => {
         const listeReception = document.getElementById("listeReception");
-        listeReception.classList.remove("clock");
+        listeReception.classList.remove("block");
         listeReception.classList.add("hidden");
     });
 
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeListeIT = document.getElementById("closeListeIT");
     closeListeIT.addEventListener("click", () => {
         const listeIT = document.getElementById("listeIT");
-        listeIT.classList.remove("clock");
+        listeIT.classList.remove("block");
         listeIT.classList.add("hidden");
     });
 
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeListePersonne = document.getElementById("closeListePersonne");
     closeListePersonne.addEventListener("click", () => {
         const listePersonne = document.getElementById("listePersonne");
-        listePersonne.classList.remove("clock");
+        listePersonne.classList.remove("block");
         listePersonne.classList.add("hidden");
     });
 
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeListeSecurite = document.getElementById("closeListeSecurite");
     closeListeSecurite.addEventListener("click", () => {
         const listeSecurite = document.getElementById("listeSecurite");
-        listeSecurite.classList.remove("clock");
+        listeSecurite.classList.remove("block");
         listeSecurite.classList.add("hidden");
     });
 
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeListeArchive = document.getElementById("closeListeArchive");
     closeListeArchive.addEventListener("click", () => {
         const listeArchive = document.getElementById("listeArchive");
-        listeArchive.classList.remove("clock");
+        listeArchive.classList.remove("block");
         listeArchive.classList.add("hidden");
     });
 
