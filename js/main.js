@@ -3,30 +3,71 @@ document.addEventListener('DOMContentLoaded', () => {
     const autreExperience = document.getElementById("autreExperience");
     let compteurExp = 0;
 
-
+    document.getElementById("photo").addEventListener("keyup", function () {
+        document.getElementById("photoPersonnelle").src = document.getElementById("photo").value;
+    })
 
     function ajouter() {
         if (!btnAjouterEmploye) return;
 
         btnAjouterEmploye.addEventListener("click", () => {
 
-            const nom = document.getElementById("nom")?.value.trim();
-            const role = document.getElementById("role")?.value.trim();
-            const photo = document.getElementById("photo")?.value.trim();
-            const email = document.getElementById("email")?.value.trim();
-            const telephone = document.getElementById("telephone")?.value.trim();
+            const nom = document.getElementById("nom").value.trim();
+            const role = document.getElementById("role").value.trim();
+            const photo = document.getElementById("photo").value.trim();
+
+            const email = document.getElementById("email").value.trim();
+            const telephone = document.getElementById("telephone").value.trim();
 
             if (!nom || !role || !photo || !email || !telephone) {
                 return alert("Veuillez remplir toutes les informations de base.");
             }
 
-            const poste = document.getElementById("poste")?.value.trim();
-            const entreprise = document.getElementById("entreprise")?.value.trim();
-            const DateDebut = document.getElementById("DateDebut")?.value.trim();
-            const DateFin = document.getElementById("DateFin")?.value.trim();
+            const poste = document.getElementById("poste").value.trim();
+            const entreprise = document.getElementById("entreprise").value.trim();
+            const DateDebut = document.getElementById("DateDebut").value.trim();
+            const DateFin = document.getElementById("DateFin").value.trim();
 
             if (!poste || !entreprise || !DateDebut || !DateFin) {
                 return alert("Veuillez remplir l'expérience principale.");
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                return alert("Email invalide.");
+            }
+
+            const telRegex = /^[0-9]{10}$/;
+            if (!telRegex.test(telephone)) {
+                return alert("Le numéro de téléphone doit contenir uniquement 10 chiffres.");
+            }
+
+            try {
+                new URL(photo);
+            } catch {
+                return alert("URL de photo invalide.");
+            }
+
+
+            if (DateDebut && DateFin) {
+                const start = new Date(DateDebut);
+                const end = new Date(DateFin);
+
+                if (start > end) {
+                    return alert("La date de début doit être inférieure à la date de fin.");
+                }
+            }
+
+            if (poste && !entreprise) {
+                return alert("Veuillez entrer l'entreprise pour ce poste.");
+            }
+
+            if (entreprise && !poste) {
+                return alert("Veuillez entrer le poste associé.");
+            }
+
+            if ((DateDebut && !DateFin) || (!DateDebut && DateFin)) {
+                return alert("Veuillez remplir les deux dates ou laisser vide.");
             }
 
             let experiences = [{
@@ -37,10 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }];
 
             for (let i = 1; i <= compteurExp; i++) {
-                const p = document.getElementById(`poste-${i}`)?.value.trim();
-                const e = document.getElementById(`entreprise-${i}`)?.value.trim();
-                const d1 = document.getElementById(`DateDebut-${i}`)?.value.trim();
-                const d2 = document.getElementById(`DateFin-${i}`)?.value.trim();
+                const p = document.getElementById(`poste-${i}`).value.trim();
+                const e = document.getElementById(`entreprise-${i}`).value.trim();
+                const d1 = document.getElementById(`DateDebut-${i}`).value.trim();
+                const d2 = document.getElementById(`DateFin-${i}`).value.trim();
 
                 if (p && e && d1 && d2) {
                     experiences.push({
@@ -168,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         experiencesPlus.innerHTML = "";
 
-        image.innerHTML = `<img class="w-full h-full object-cover rounded-full" src="${user.photo}" alt="image">`;
+        image.innerHTML = `<img class="w-full h-full object-cover" src="${user.photo}" alt="image">`;
         nomEmp.innerHTML = `<h1 class="text-xl font-bold">${user.nom}</h1>`;
         roleEmp.innerHTML = `<p class="text-gray-600">${user.role}</p>`;
         emailEmp.innerHTML = `<p>${user.email}</p>`;
@@ -277,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const assignedUsers = allUsers.filter(user => user.departmentId === departmentId);
         assignedUsers.forEach(u => {
             assignEmployee(u, assignedContainer, salle);
-            
+
         });
 
 
@@ -317,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
             informationEmp(u);
 
         });
-        
+
 
         li.querySelector(".removeBtn").addEventListener("click", () => {
 
@@ -331,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             localStorage.setItem("utilisateur", JSON.stringify(allUsers));
 
-           
+
             li.remove();
 
             if (container.children.length === 0 && salle) {
@@ -342,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location.reload();
         });
 
-        
+
     }
 
 
