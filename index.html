@@ -7,7 +7,6 @@
     <title>WorkSphere - Virtual Workspace</title>
     <link rel="stylesheet" href="styles/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </head>
 
 <body>
@@ -19,7 +18,7 @@
                 <ul id="listeEmployes" class="grid grid-cols gap-3">
                 </ul>
                 <div class="mt-auto relative">
-                    <button data-modal-target="ajouterEmploye" data-modal-toggle="ajouterEmploye"
+                    <button id="btnAjouter" 
                         class=" bg-blue-600 text-white border-2 rounded-xl w-full md:w-64 h-14 text-lg active:scale-95"
                         type="button">Ajouter un nouvel
                         employé</button>
@@ -33,8 +32,7 @@
                     <div id="salleConference"
                         class="flex flex-col border-black border-8 justify-center items-center w-full h-[260px] md:w-[300px] md:h-[360px] text-center">
                         <h1>Salle de conférence</h1>
-                        <button id="conference" data-modal-target="listeConference" data-modal-toggle="listeConference"
-                            class="text-blue-600 text-6xl">+</button>
+                        <button id="conference"  class="text-blue-600 text-6xl">+</button>
                         <ul id="assignedConference">
 
                         </ul>
@@ -44,7 +42,7 @@
                         class="flex flex-col bg-red-500 bg-opacity-50 border-black border-8 justify-center items-center w-full h-[260px] md:w-[300px] md:h-[370px] text-center">
 
                         <h1>Réception</h1>
-                        <button id="reception" data-modal-target="listeReception" data-modal-toggle="listeReception"
+                        <button id="reception" 
                             class="text-blue-600 text-6xl">+</button>
                         <ul id="assignedReception">
 
@@ -61,8 +59,7 @@
                     <div id="salleServeurs"
                         class="flex flex-col bg-red-500 bg-opacity-50 border-black border-8 justify-center items-center w-full h-[260px] md:w-[300px] md:h-[300px] text-center">
                         <h1>Salle des serveurs</h1>
-                        <button data-modal-target="listeIT" data-modal-toggle="listeIT"
-                            class="text-blue-600 text-6xl">+</button>
+                        <button id="serveursSalle" class="text-blue-600 text-6xl">+</button>
                         <ul id="assignedServeur">
 
                         </ul>
@@ -73,8 +70,7 @@
                     <div id="sallePersonne"
                         class="flex flex-col border-black border-8 justify-center items-center w-full h-[260px] md:w-[300px] md:h-[300px] text-center ">
                         <h1>Salle du personnel</h1>
-                        <button data-modal-target="listePersonne" data-modal-toggle="listePersonne"
-                            class="text-blue-600 text-6xl">+</button>
+                        <button id="personneSalle" class="text-blue-600 text-6xl">+</button>
                         <ul id="assignedPersonne">
 
                         </ul>
@@ -85,8 +81,7 @@
                     <div id="salleSecurite"
                         class="flex flex-col bg-red-500 bg-opacity-50 border-black border-8 justify-center items-center w-full h-[260px] md:w-[300px] md:h-[300px] text-center">
                         <h1>Salle de sécurité</h1>
-                        <button data-modal-target="listeSecurite" data-modal-toggle="listeSecurite"
-                            class="text-blue-600 text-6xl">+</button>
+                        <button id="securiteSalle" class="text-blue-600 text-6xl">+</button>
                         <ul id="assignedSecurite">
 
                         </ul>
@@ -97,8 +92,7 @@
                     <div id="salleArchive"
                         class="fflex flex-col bg-red-500 bg-opacity-50 border-black border-8 justify-center items-center w-full h-[260px] md:w-[300px] md:h-[300px] text-center">
                         <h1>Salle d’archives</h1>
-                        <button data-modal-target="listeArchive" data-modal-toggle="listeArchive"
-                            class="text-blue-600 text-6xl">+</button>
+                        <button id="archiveSalle" class="text-blue-600 text-6xl">+</button>
                         <ul id="assignedArchive">
 
                         </ul>
@@ -116,15 +110,9 @@
                         <h3 class="text-lg font-medium text-heading">
                             Ajouter un nouvel employé
                         </h3>
-                        <button type="button"
-                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-                            data-modal-hide="ajouterEmploye">
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
+                        <button id="closeModalAjouter" type="button"
+                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center">
+                            X
                         </button>
                     </div>
 
@@ -220,12 +208,12 @@
 
                     </div>
                     <div class="flex items-center space-x-4 border-t border-default pt-4 md:pt-6">
-                        <button id="btnAjouterEmploye" data-modal-hide="ajouterEmploye" type="submit"
+                        <button id="btnAjouterEmploye"  type="submit"
                             class="inline-flex items-center  text-white bg-blue-600 hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
 
                             Ajouter un nouvel employé
                         </button>
-                        <button data-modal-hide="ajouterEmploye" type="button"
+                        <button id="closeModalCancel" type="button"
                             class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancel</button>
                     </div>
 
@@ -244,15 +232,9 @@
                         <h3 class="text-lg font-medium text-heading">
                             Information d'employe
                         </h3>
-                        <button type="button"
-                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-                            data-modal-hide="informationEmp">
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
+                        <button id="closeModalInformation" type="button"
+                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center">
+                            X
                         </button>
                     </div>
 
@@ -306,15 +288,10 @@
 
                     <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
 
-                        <button type="button"
-                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-                            data-modal-hide="listeConference">
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
+                        <button id="closeListeConference" type="button"
+                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center">
+                             
+                            X
                         </button>
                     </div>
 
@@ -339,15 +316,9 @@
 
                     <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
 
-                        <button type="button"
-                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-                            data-modal-hide="listeIT">
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
+                        <button id="closeListeIT" type="button"
+                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center">
+                            X
                         </button>
                     </div>
 
@@ -365,7 +336,7 @@
         </div>
 
         <!-- modal reception -->
-        <div id="listeReception" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+        <div id="listeReception"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center  w-full md:inset-0 max-h-full">
             <div class="relative p-4 w-full max-w-2xl max-h-full">
 
@@ -373,15 +344,9 @@
 
                     <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
 
-                        <button type="button"
-                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-                            data-modal-hide="listeReception">
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
+                        <button id="closeListeReception" type="button"
+                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center">
+                            X
                         </button>
                     </div>
 
@@ -406,15 +371,9 @@
 
                     <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
 
-                        <button type="button"
-                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-                            data-modal-hide="listePersonne">
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
+                        <button id="closeListePersonne" type="button"
+                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center">
+                            X
                         </button>
                     </div>
 
@@ -440,15 +399,9 @@
 
                     <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
 
-                        <button type="button"
-                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-                            data-modal-hide="listeSecurite">
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
+                        <button id="closeListeSecurite" type="button"
+                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center">
+                            X
                         </button>
                     </div>
 
@@ -474,15 +427,9 @@
 
                     <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
 
-                        <button type="button"
-                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-                            data-modal-hide="listeArchive">
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                            </svg>
-                            <span class="sr-only">Close modal</span>
+                        <button id="closeListeArchive" type="button"
+                            class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center">
+                            X
                         </button>
                     </div>
 
